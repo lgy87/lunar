@@ -639,6 +639,6 @@ Lunar.prototype.calc = function (year, month) {
 
 export default function lunar(year, month) {
   const lunar = new Lunar()
-  l.calc(year, month)
+  lunar.calc(year, month)
   return lunar
 }
