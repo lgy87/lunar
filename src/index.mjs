@@ -587,7 +587,8 @@ Lunar.prototype.calc = function (year, month) {
     if (!SSQ.ZQ.length || d0 < SSQ.ZQ[0] || d0 >= SSQ.ZQ[24]) SSQ.calcY(d0)
     let mk = Math.floor((d0 - SSQ.HS[0]) / 30)
     if (mk < 13 && SSQ.HS[mk + 1] <= d0) mk++
-    theDay.lunarDay = rmc[d0 - SSQ.HS[mk]]
+    theDay.lunarDayIndex = d0 - SSQ.HS[mk]
+    theDay.lunarDay = rmc[theDay.lunarDayIndex]
     if (d0 == SSQ.HS[mk] || d0 == Bd0) {
       theDay.lunarMonth = SSQ.ym[mk]
       theDay.lunarDaysInMonth = SSQ.dx[mk]
