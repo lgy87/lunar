@@ -547,11 +547,26 @@ const JD = {
   },
 }
 
-function Lunar() {
+function Lunar(year, month) {
+  this.init()
+  this.calc(year, month)
+  this.trim()
+}
+
+Lunar.prototype.init = function () {
   this.days = []
   for (let i = 0; i < 31; i++) {
     this.days[i] = {}
   }
+}
+
+Lunar.prototype.trim = function () {
+  const emptyCount = this.days.slice(28).filter(isEmpty).length
+  if (emptyCount) this.days.length = 31 - emptyCount
+}
+
+function isEmpty(theDay) {
+  return Object.keys(theDay).length <= 0
 }
 
 Lunar.prototype.calc = function (year, month) {
@@ -639,7 +654,5 @@ Lunar.prototype.calc = function (year, month) {
 }
 
 export default function lunar(year, month) {
-  const lunar = new Lunar()
-  lunar.calc(year, month)
-  return lunar
+  return new Lunar(year, month)
 }
