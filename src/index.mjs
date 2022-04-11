@@ -653,6 +653,39 @@ Lunar.prototype.calc = function (year, month) {
   } while (D + 12 < Bd0 + this.daysInMonth)
 }
 
-export default function lunar(year, month) {
-  return new Lunar(year, month)
+export default function lunar(year, month, day) {
+  if (isYearInvalid(year)) throw new Error("不支持的 year!")
+  if (isMonthInvalid(month)) throw new Error("不合法的 month!")
+  if (hasDaySpecified(day) && isDayInvalid(year, month, day))
+    throw new Error("不合法的 day!")
+
+  const result = new Lunar(year, month)
+
+  if (hasDaySpecified(day)) {
+    result.days = [result.days[day - 1]]
+  }
+
+  return result
+}
+
+function hasDaySpecified(day) {
+  return typeof day === "number"
+}
+
+function isYearInvalid(year) {
+  return year > 9999 || year < 1000
+}
+function isMonthInvalid(month) {
+  return month < 1 || month > 12
+}
+function isDayValid(year, month, day) {
+  if (day < 1 || day > 31) return false
+  if ([4, 6, 9, 12].includes(month)) return day <= 30
+  if (month === 2) return day <= (leapYear(year) ? 29 : 28)
+  return day <= 31
+}
+const isDayInvalid = (year, month, day) => !isDayValid(year, month, day)
+
+function leapYear(year) {
+  return (year % 100 != 0 && year % 4 == 0) || year % 400 == 0
 }
