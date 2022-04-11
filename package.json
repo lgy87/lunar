@@ -2,10 +2,22 @@
   "name": "lunar",
   "version": "1.0.1",
   "main": "index.js",
-  "repository": "https://github.com/lgy87/lunar.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lgy87/lunar.git"
+  },
   "author": "李光耀 <lgy87@foxmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "rollup -c"
+  },
+  "description": "阴历计算器（移植于寿星天文历算法）",
+  "bugs": {
+    "url": "https://github.com/lgy87/lunar/issues"
+  },
+  "homepage": "https://github.com/lgy87/lunar#readme",
+  "keywords": [],
+  "devDependencies": {
+    "rollup-plugin-uglify": "^6.0.4"
   }
 }
