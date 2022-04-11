@@ -1,7 +1,7 @@
 {
   "name": "lunar",
   "version": "1.0.1",
-  "main": "index.js",
+  "main": "dist/index.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lgy87/lunar.git"
